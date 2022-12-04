@@ -8,8 +8,9 @@
 
 ## :camera: Screenshots
 
- Light mode                                      | Dark mode 
-![Home Light](image/home_light.png "Home Light") ![Home Dark](image/home_dark.png "Home Dark")
+| Light mode | Dark mode |
+| :---: | :---: |
+| ![Home Light](image/home_light.png "Home Light") | ![Home Dark](image/home_dark.png "Home Dark") |
 
 ## :blue_book: Feature
 
