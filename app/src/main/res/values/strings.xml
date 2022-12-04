@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CleanWeatherApp</string>
+
+    <string name="degrees" translatable="false">%1$d\u00B0</string>
+    <string name="degrees_c" translatable="false">%1$s\u2103</string>
+
+    <string name="sun_rise">Sun rise</string>
+    <string name="sun_set">Sun set</string>
+    <string name="wind">Wind</string>
+    <string name="humidity">Humidity</string>
+    <string name="address">Address</string>
+    <string name="uv_index">UV index</string>
+    <string name="sunset_sunrise">Sunset - Sunrise</string>
+
+    <string name="home_text_celsius_high_low">H %1$s\u2103 / L %2$s\u2103</string>
+    <string name="home_text_meter_per_second" translatable="false">%1$s m/s</string>
+    <string name="home_text_humidity" translatable="false">%1$s%%</string>
+</resources>
