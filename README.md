@@ -37,4 +37,4 @@
 - Using [Mockito](https://site.mockito.org/) to write mock unit test.
 - Using [Espresso](https://developer.android.com/training/testing/espresso) to write concise, beautiful, and reliable Android UI tests.
 - Using [Compose_UI](https://developer.android.com/jetpack/compose/testing) to write Jetpack compose UI tests.
-- Using [JUnit4](https://github.com/Kotlin/kotlinx-kover) to write unit test. ` ./gradlew koverHtmlReport`.
+- Using [JUnit4](https://github.com/junit-team/junit4) to write unit test.
