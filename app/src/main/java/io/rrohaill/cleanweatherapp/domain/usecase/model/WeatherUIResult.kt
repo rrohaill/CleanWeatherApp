@@ -1,4 +1,4 @@
-package io.rrohaill.cleanweatherapp.usecase.model
+package io.rrohaill.cleanweatherapp.domain.usecase.model
 
 sealed class WeatherUIResult {
     data class Success(val data: WeatherUIData) : WeatherUIResult()

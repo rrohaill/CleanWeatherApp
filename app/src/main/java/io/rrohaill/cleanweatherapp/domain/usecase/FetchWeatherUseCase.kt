@@ -1,6 +1,6 @@
-package io.rrohaill.cleanweatherapp.usecase
+package io.rrohaill.cleanweatherapp.domain.usecase
 
-import io.rohail.metaweatherapp.dashboard.data.WeatherRepository
+import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
 import javax.inject.Inject
 
 interface FetchWeatherUseCase {

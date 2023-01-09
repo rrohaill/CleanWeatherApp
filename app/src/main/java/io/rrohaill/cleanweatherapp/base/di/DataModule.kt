@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.rohail.metaweatherapp.dashboard.data.WeatherRepository
-import io.rohail.metaweatherapp.dashboard.data.WeatherRepositoryImpl
 import io.rrohaill.cleanweatherapp.data.WeatherDataSource
 import io.rrohaill.cleanweatherapp.data.WeatherDataSourceImpl
+import io.rrohaill.cleanweatherapp.data.WeatherRepositoryImpl
+import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
 import javax.inject.Singleton
 
 @Module

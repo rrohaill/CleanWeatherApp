@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.rrohaill.cleanweatherapp.usecase.FetchWeatherUseCase
-import io.rrohaill.cleanweatherapp.usecase.FetchWeatherUseCaseImpl
-import io.rrohaill.cleanweatherapp.usecase.GetWeatherUseCase
-import io.rrohaill.cleanweatherapp.usecase.GetWeatherUseCaseImpl
+import io.rrohaill.cleanweatherapp.domain.usecase.FetchWeatherUseCase
+import io.rrohaill.cleanweatherapp.domain.usecase.FetchWeatherUseCaseImpl
+import io.rrohaill.cleanweatherapp.domain.usecase.GetWeatherUseCase
+import io.rrohaill.cleanweatherapp.domain.usecase.GetWeatherUseCaseImpl
 import javax.inject.Singleton
 
 @Module

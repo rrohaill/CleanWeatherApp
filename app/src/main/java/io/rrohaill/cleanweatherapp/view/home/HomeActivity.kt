@@ -1,4 +1,4 @@
-package io.rrohaill.cleanweatherapp.ui.home
+package io.rrohaill.cleanweatherapp.view.home
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import io.rrohaill.cleanweatherapp.ui.theme.CleanWeatherAppTheme
+import io.rrohaill.cleanweatherapp.view.theme.CleanWeatherAppTheme
 
 
 @AndroidEntryPoint

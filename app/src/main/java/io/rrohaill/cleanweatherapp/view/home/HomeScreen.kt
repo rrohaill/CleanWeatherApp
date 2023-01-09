@@ -1,4 +1,4 @@
-package io.rrohaill.cleanweatherapp.ui.home
+package io.rrohaill.cleanweatherapp.view.home
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -35,8 +35,8 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import io.rrohaill.cleanweatherapp.BuildConfig
 import io.rrohaill.cleanweatherapp.R
-import io.rrohaill.cleanweatherapp.usecase.model.WeatherUIData
-import io.rrohaill.cleanweatherapp.usecase.model.WeatherUIResult
+import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIData
+import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable

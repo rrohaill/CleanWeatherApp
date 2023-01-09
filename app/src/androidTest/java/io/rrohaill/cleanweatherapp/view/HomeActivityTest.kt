@@ -1,4 +1,4 @@
-package io.rrohaill.cleanweatherapp.ui
+package io.rrohaill.cleanweatherapp.view
 
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.test.assertIsDisplayed
@@ -11,7 +11,7 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.platform.app.InstrumentationRegistry
 import io.rrohaill.cleanweatherapp.InstrumentTestHelper
-import io.rrohaill.cleanweatherapp.ui.home.HomeActivity
+import io.rrohaill.cleanweatherapp.view.home.HomeActivity
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

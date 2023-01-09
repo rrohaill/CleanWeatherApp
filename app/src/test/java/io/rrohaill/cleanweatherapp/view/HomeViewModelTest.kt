@@ -1,11 +1,11 @@
-package io.rrohaill.cleanweatherapp.ui
+package io.rrohaill.cleanweatherapp.view
 
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import io.rrohaill.cleanweatherapp.getDummyWeatherResponse
-import io.rrohaill.cleanweatherapp.ui.home.HomeViewModel
-import io.rrohaill.cleanweatherapp.usecase.model.WeatherUIResult
-import io.rrohaill.cleanweatherapp.usecase.toUI
+import io.rrohaill.cleanweatherapp.view.home.HomeViewModel
+import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
+import io.rrohaill.cleanweatherapp.domain.usecase.toUI
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking

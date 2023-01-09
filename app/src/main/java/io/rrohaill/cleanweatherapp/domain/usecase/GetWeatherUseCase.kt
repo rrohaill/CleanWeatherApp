@@ -1,10 +1,10 @@
-package io.rrohaill.cleanweatherapp.usecase
+package io.rrohaill.cleanweatherapp.domain.usecase
 
-import io.rohail.metaweatherapp.dashboard.data.WeatherRepository
+import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
 import io.rrohaill.cleanweatherapp.data.model.WeatherResponse
-import io.rrohaill.cleanweatherapp.data.model.WeatherResult
-import io.rrohaill.cleanweatherapp.usecase.model.WeatherUIData
-import io.rrohaill.cleanweatherapp.usecase.model.WeatherUIResult
+import io.rrohaill.cleanweatherapp.domain.model.WeatherResult
+import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIData
+import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
 import io.rrohaill.cleanweatherapp.utils.DateFormat
 import io.rrohaill.cleanweatherapp.utils.toDateTime
 import kotlinx.coroutines.flow.Flow

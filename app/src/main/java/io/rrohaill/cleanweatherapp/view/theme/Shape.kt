@@ -1,4 +1,4 @@
-package io.rrohaill.cleanweatherapp.ui.theme
+package io.rrohaill.cleanweatherapp.view.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

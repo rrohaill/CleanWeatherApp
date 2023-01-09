@@ -1,16 +1,16 @@
-package io.rrohaill.cleanweatherapp.ui
+package io.rrohaill.cleanweatherapp.view
 
 import androidx.test.platform.app.InstrumentationRegistry
-import io.rohail.metaweatherapp.dashboard.data.WeatherRepository
-import io.rohail.metaweatherapp.dashboard.data.WeatherRepositoryImpl
 import io.rrohaill.cleanweatherapp.base.network.ApiFactory
 import io.rrohaill.cleanweatherapp.data.WeatherDataSourceImpl
-import io.rrohaill.cleanweatherapp.ui.home.HomeViewModel
-import io.rrohaill.cleanweatherapp.usecase.FetchWeatherUseCase
-import io.rrohaill.cleanweatherapp.usecase.FetchWeatherUseCaseImpl
-import io.rrohaill.cleanweatherapp.usecase.GetWeatherUseCase
-import io.rrohaill.cleanweatherapp.usecase.GetWeatherUseCaseImpl
-import io.rrohaill.cleanweatherapp.usecase.model.WeatherUIResult
+import io.rrohaill.cleanweatherapp.data.WeatherRepositoryImpl
+import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
+import io.rrohaill.cleanweatherapp.domain.usecase.FetchWeatherUseCase
+import io.rrohaill.cleanweatherapp.domain.usecase.FetchWeatherUseCaseImpl
+import io.rrohaill.cleanweatherapp.domain.usecase.GetWeatherUseCase
+import io.rrohaill.cleanweatherapp.domain.usecase.GetWeatherUseCaseImpl
+import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
+import io.rrohaill.cleanweatherapp.view.home.HomeViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
