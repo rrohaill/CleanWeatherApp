@@ -1,6 +1,11 @@
 # Android - Weather ❤️ Compose
 
 ## Architecture
+### Clean architecture has been used for:
+- Scalability
+- Maintainability
+- Separation of concern
+- ...
 
 <p align="center">
 <img src="image/architecture.jpeg?raw=true" />
@@ -38,3 +43,6 @@
 - Using [Espresso](https://developer.android.com/training/testing/espresso) to write concise, beautiful, and reliable Android UI tests.
 - Using [Compose_UI](https://developer.android.com/jetpack/compose/testing) to write Jetpack compose UI tests.
 - Using [JUnit4](https://github.com/junit-team/junit4) to write unit test.
+
+## APK
+### You can find apk file in apk folder
