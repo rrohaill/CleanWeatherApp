@@ -3,9 +3,11 @@ package io.rrohaill.cleanweatherapp.view.home
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Configuration
 import android.location.LocationManager
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -20,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LastBaseline
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -116,17 +119,25 @@ fun HomeContent(
             .verticalScroll(rememberScrollState())
             .testTag("myContent")
     ) {
-        NowWeather(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            currentWeather = currentWeather,
-        )
+        if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT)
+            NowWeatherPortrait(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                currentWeather = currentWeather,
+            )
+        else
+            NowWeatherLandscape(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1f),
+                currentWeather = currentWeather,
+            )
     }
 }
 
 @Composable
-fun NowWeather(
+fun NowWeatherPortrait(
     modifier: Modifier,
     currentWeather: WeatherUIData,
 ) {
@@ -150,7 +161,8 @@ fun NowWeather(
         Column(
             modifier = Modifier
                 .padding(end = 15.dp)
-                .fillMaxHeight(),
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.End,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
@@ -203,6 +215,88 @@ fun NowWeather(
                 ),
             )
         }
+    }
+}
+
+@Composable
+fun NowWeatherLandscape(
+    modifier: Modifier,
+    currentWeather: WeatherUIData,
+) {
+    Column(modifier = modifier) {
+        Row(
+            modifier = Modifier
+                .padding(end = 15.dp)
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top
+        ) {
+            Text(
+                text = stringResource(
+                    id = R.string.home_text_celsius_high_low,
+                    currentWeather.max,
+                    currentWeather.min,
+                ),
+            )
+
+            Text(
+                text = currentWeather.city,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = MaterialTheme.typography.labelMedium.copy(fontSize = 22.sp),
+            )
+
+            Degrees(
+                currentWeather = currentWeather.description,
+                currentTemp = currentWeather.temperature,
+            )
+
+            DetailWeather(
+                iconId = R.drawable.ic_sunrise,
+                title = stringResource(id = R.string.sun_rise),
+                description = currentWeather.sunRise,
+            )
+
+            DetailWeather(
+                iconId = R.drawable.ic_sunset,
+                title = stringResource(id = R.string.sun_set),
+                description = currentWeather.sunSet,
+            )
+
+            DetailWeather(
+                iconId = R.drawable.ic_wind,
+                title = stringResource(id = R.string.wind),
+                description = stringResource(
+                    id = R.string.home_text_meter_per_second,
+                    currentWeather.windSpeed
+                ),
+            )
+
+            DetailWeather(
+                iconId = R.drawable.ic_humidity,
+                title = stringResource(id = R.string.humidity),
+                description = stringResource(
+                    id = R.string.home_text_humidity,
+                    currentWeather.humidity
+                ),
+            )
+        }
+
+        Image(
+            painter = rememberImagePainter(
+                BuildConfig.IMAGE_URL.replace(
+                    "{icon}",
+                    currentWeather.icon
+                )
+            ),
+            contentDescription = "weather_image",
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 50.dp)
+                .weight(1f),
+            alignment = Alignment.Center,
+            contentScale = ContentScale.Fit,
+        )
     }
 }
 

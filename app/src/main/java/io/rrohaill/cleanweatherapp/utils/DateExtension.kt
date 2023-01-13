@@ -8,9 +8,7 @@ object DateFormat {
 }
 
 fun Long.toDateTime(format: String, zoneId: Int? = null): String {
-    val date = Date().apply {
-        time = this@toDateTime
-    }
+    val date = Date(this@toDateTime)
 
     val language = androidx.compose.ui.text.intl.Locale.current.language
     val locale = Locale(language)
