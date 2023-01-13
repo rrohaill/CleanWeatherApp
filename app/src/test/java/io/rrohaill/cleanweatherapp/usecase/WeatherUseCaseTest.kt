@@ -2,20 +2,20 @@ package io.rrohaill.cleanweatherapp.usecase
 
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
-import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
 import io.rrohaill.cleanweatherapp.domain.model.WeatherResult
+import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
 import io.rrohaill.cleanweatherapp.domain.usecase.GetWeatherUseCaseImpl
-import io.rrohaill.cleanweatherapp.domain.usecase.toUI
-import io.rrohaill.cleanweatherapp.getDummyWeatherResponse
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIData
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
+import io.rrohaill.cleanweatherapp.domain.usecase.toUI
+import io.rrohaill.cleanweatherapp.getDummyWeatherResponse
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class GetWeatherUseCaseTest {
+class WeatherUseCaseTest {
 
     private val successResult = WeatherResult.Success(
         data = getDummyWeatherResponse()
@@ -30,7 +30,9 @@ class GetWeatherUseCaseTest {
     fun `get weather ui result success`() = runBlocking {
         val uc = GetWeatherUseCaseImpl(weatherRepository = getWeatherRepoMock(true))
 
-        assertEquals(successUiResult, uc().first())
+        val result = uc().first()
+        assertEquals(successUiResult, result)
+        assert(result is WeatherUIResult.Success && result.data == successUiResult.data)
     }
 
     @Test

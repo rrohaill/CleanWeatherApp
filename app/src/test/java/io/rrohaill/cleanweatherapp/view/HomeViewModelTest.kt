@@ -2,10 +2,10 @@ package io.rrohaill.cleanweatherapp.view
 
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
-import io.rrohaill.cleanweatherapp.getDummyWeatherResponse
-import io.rrohaill.cleanweatherapp.view.home.HomeViewModel
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
 import io.rrohaill.cleanweatherapp.domain.usecase.toUI
+import io.rrohaill.cleanweatherapp.getDummyWeatherResponse
+import io.rrohaill.cleanweatherapp.view.home.HomeViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
@@ -47,8 +47,12 @@ class HomeViewModelTest {
 
     @Test
     fun testGetWeatherSuccess() = runBlocking {
-        val result = getViewModelSuccess().getResult()
-        assertEquals(result.first(), success)
+        val result = getViewModelSuccess().getResult().first()
+        assert(
+            result is WeatherUIResult.Success
+                    && result == success
+                    && result.data.city == success.data.city
+        )
     }
 
     @Test
