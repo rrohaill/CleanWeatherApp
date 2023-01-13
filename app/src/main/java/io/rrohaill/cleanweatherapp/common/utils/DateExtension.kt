@@ -1,4 +1,4 @@
-package io.rrohaill.cleanweatherapp.utils
+package io.rrohaill.cleanweatherapp.common.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

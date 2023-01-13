@@ -1,21 +1,15 @@
 package io.rrohaill.cleanweatherapp.view.home
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.res.Configuration
-import android.location.LocationManager
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -23,89 +17,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.location.LocationManagerCompat
-import androidx.core.location.LocationRequestCompat
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
 import io.rrohaill.cleanweatherapp.BuildConfig
 import io.rrohaill.cleanweatherapp.R
+import io.rrohaill.cleanweatherapp.common.compose.ShowError
+import io.rrohaill.cleanweatherapp.common.compose.ShowLoading
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIData
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
+import kotlinx.coroutines.flow.Flow
 
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun HomeWithPermission(homeViewModel: HomeViewModel = viewModel()) {
-
-    //permission state
-    val locationPermissionState = rememberPermissionState(
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-    )
-
-    //ask permission
-    SideEffect {
-        locationPermissionState.launchPermissionRequest()
-    }
+fun HomeScreen(weatherResult: Flow<WeatherUIResult>) {
 
     //check state
-    if (locationPermissionState.status.isGranted)
-        HomeScreen(homeViewModel)
-    else
-        ShowError(message = "Permission not granted")
-}
-
-@SuppressLint("MissingPermission")
-@Composable
-fun HomeScreen(homeViewModel: HomeViewModel) {
-    val context = LocalContext.current
-
-    //fetch location and weather
-    val lm = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-    LocationManagerCompat.requestLocationUpdates(
-        lm,
-        LocationManager.GPS_PROVIDER,
-        LocationRequestCompat.Builder(0).build(),
-        { location ->
-            homeViewModel.fetchWeather(lat = location.latitude, lon = location.longitude)
-        },
-        context.mainLooper
-    )
-
-    //check state
-    val result by homeViewModel.getResult().collectAsState(initial = WeatherUIResult.Loading)
+    val result by weatherResult.collectAsState(initial = WeatherUIResult.Loading)
     when (result) {
         is WeatherUIResult.Loading -> ShowLoading()
         is WeatherUIResult.Error -> ShowError((result as WeatherUIResult.Error).errorMessage)
         is WeatherUIResult.Success -> HomeContent(currentWeather = (result as WeatherUIResult.Success).data)
     }
 
-}
-
-@Composable
-fun ShowError(message: String) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = message, modifier = Modifier.align(Alignment.Center))
-    }
-}
-
-@Composable
-fun ShowLoading() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .testTag("myProgressIndicator")
-        )
-    }
 }
 
 @Composable

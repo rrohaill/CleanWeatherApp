@@ -5,8 +5,8 @@ import io.rrohaill.cleanweatherapp.domain.model.WeatherResult
 import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIData
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
-import io.rrohaill.cleanweatherapp.utils.DateFormat
-import io.rrohaill.cleanweatherapp.utils.toDateTime
+import io.rrohaill.cleanweatherapp.common.utils.DateFormat
+import io.rrohaill.cleanweatherapp.common.utils.toDateTime
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
