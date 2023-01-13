@@ -43,7 +43,7 @@ class HomeActivity : ComponentActivity() {
                         findLocationAndFetchWeather()
                         HomeScreen(homeViewModel.getResult())
                     } else
-                        ShowError(message = "Permission not granted")
+                        ShowError(message = "Permission not granted. Go to settings and grant permission.")
                 }
             }
         }
