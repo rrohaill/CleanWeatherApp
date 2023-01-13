@@ -1,12 +1,14 @@
 package io.rrohaill.cleanweatherapp.repository
 
 import androidx.test.platform.app.InstrumentationRegistry
-import io.rrohaill.cleanweatherapp.base.network.ApiFactory
 import io.rrohaill.cleanweatherapp.base.network.ApiResult
+import io.rrohaill.cleanweatherapp.base.network.RetrofitFactory
 import io.rrohaill.cleanweatherapp.data.WeatherDataSource
 import io.rrohaill.cleanweatherapp.data.WeatherDataSourceImpl
+import io.rrohaill.cleanweatherapp.test.BuildConfig
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import retrofit2.create
 
 class WeatherRepositoryTest {
 
@@ -18,9 +20,10 @@ class WeatherRepositoryTest {
     }
 
     private fun getWeatherDataSource(): WeatherDataSource = WeatherDataSourceImpl(
-        ApiFactory.getApi(
-            InstrumentationRegistry.getInstrumentation().targetContext
-        )
+        RetrofitFactory.retrofit(
+            baseUrl = BuildConfig.BASE_URL,
+            context = InstrumentationRegistry.getInstrumentation().targetContext
+        ).create()
     )
 
 }

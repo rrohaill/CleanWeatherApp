@@ -1,7 +1,8 @@
 package io.rrohaill.cleanweatherapp.view
 
 import androidx.test.platform.app.InstrumentationRegistry
-import io.rrohaill.cleanweatherapp.base.network.ApiFactory
+import io.rrohaill.cleanweatherapp.BuildConfig
+import io.rrohaill.cleanweatherapp.base.network.RetrofitFactory
 import io.rrohaill.cleanweatherapp.data.WeatherDataSourceImpl
 import io.rrohaill.cleanweatherapp.data.WeatherRepositoryImpl
 import io.rrohaill.cleanweatherapp.domain.repository.WeatherRepository
@@ -14,6 +15,7 @@ import io.rrohaill.cleanweatherapp.view.home.HomeViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import retrofit2.create
 
 
 class HomeViewModelAndroidTest {
@@ -32,14 +34,16 @@ class HomeViewModelAndroidTest {
 
         viewModel.fetchWeather(lat = 32.06, 12.26)
 
-        assert(viewModel.getResult().first() is WeatherUIResult.Success)
+        val result = viewModel.getResult().first()
+        assert(result is WeatherUIResult.Success)
     }
 
     private fun getWeatherRepository(): WeatherRepository = WeatherRepositoryImpl(
         WeatherDataSourceImpl(
-            ApiFactory.getApi(
-                InstrumentationRegistry.getInstrumentation().targetContext
-            )
+            RetrofitFactory.retrofit(
+                baseUrl = BuildConfig.BASE_URL,
+                context = InstrumentationRegistry.getInstrumentation().targetContext
+            ).create()
         )
     )
 }
