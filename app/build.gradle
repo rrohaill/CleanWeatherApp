@@ -15,15 +15,15 @@ def baseUrl = properties.getProperty("BASE_URL") ?: ""
 def imageURL = properties.getProperty("IMAGE_URL") ?: ""
 
 android {
-    namespace 'io.rrohaill.cleanweatherapp'
-    compileSdk 33
+    namespace(AppVersions.APPLICATION_ID)
+    compileSdk(AppVersions.COMPILE_SDK)
 
     defaultConfig {
-        applicationId "io.rrohaill.cleanweatherapp"
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        applicationId = (AppVersions.APPLICATION_ID)
+        minSdk = (AppVersions.MIN_SDK)
+        targetSdk = (AppVersions.TARGET_SDK)
+        versionCode = AppVersions.versionCode
+        versionName = AppVersions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -66,51 +66,51 @@ android {
 dependencies {
 
     //kotlin
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation "androidx.core:core-ktx:${Kotlin.KTX_CORE_VERSION}"
 
     //lifecycle
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${Androidx.lifecycle}"
 
     //compose
-    implementation 'androidx.activity:activity-compose:1.6.1'
-    implementation "androidx.compose.ui:ui:$compose_ui_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
+    implementation "androidx.activity:activity-compose:${Androidx.activityComposeVersion}"
+    implementation "androidx.compose.ui:ui:${Androidx.composeVersion}"
+    implementation "androidx.compose.ui:ui-tooling-preview:${Androidx.composeVersion}"
 
     //material
-    implementation 'androidx.compose.material:material:1.3.1'
-    implementation "androidx.compose.material3:material3:1.1.0-alpha03"
+    implementation "androidx.compose.material:material:${Androidx.material}"
+    implementation "androidx.compose.material3:material3:${Androidx.material3}"
 
     //viewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:${Androidx.lifecycleViewModel}"
 
     //Google accompanist permissions
-    implementation 'com.google.accompanist:accompanist-permissions:0.28.0'
+    implementation "com.google.accompanist:accompanist-permissions:${Accompanist.version}"
 
     //coil
-    implementation "io.coil-kt:coil-compose:1.4.0"
+    implementation "io.coil-kt:coil-compose:${Coil.version}"
 
     //retrofit
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+    implementation "com.squareup.retrofit2:retrofit:${Networking.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${Networking.gson}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${Networking.logging}"
 
     //Hilt dependency injection
-    implementation("com.google.dagger:hilt-android:2.44.2")
-    kapt("com.google.dagger:hilt-android-compiler:2.44.2")
+    implementation "com.google.dagger:hilt-android:${Di.hiltVersion}"
+    kapt "com.google.dagger:hilt-android-compiler:${Di.hiltVersion}"
 
     //testing
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    testImplementation "junit:junit:${UnitTesting.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${UnitTesting.junit_Ext}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${UnitTesting.espresso}"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:${UnitTesting.COMPOSE_TEST_VERSION}"
+    debugImplementation "androidx.compose.ui:ui-tooling:${UnitTesting.COMPOSE_TEST_VERSION}"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:${UnitTesting.COMPOSE_TEST_VERSION}"
 
     //mockito testing
-    testImplementation 'org.mockito:mockito-core:4.6.1'
-    testImplementation 'org.mockito:mockito-inline:4.6.1'
-    testImplementation 'org.mockito:mockito-android:4.6.1'
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-    implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
-    implementation 'com.squareup.retrofit2:retrofit-mock:2.9.0'
+    testImplementation "org.mockito:mockito-core:${UnitTesting.MOCKITO_CORE}"
+    testImplementation "org.mockito:mockito-inline:${UnitTesting.MOCKITO_INLINE}"
+    testImplementation "org.mockito:mockito-android:${UnitTesting.MOCKITO_ANDROID}"
+    testImplementation "androidx.arch.core:core-testing:${UnitTesting.ARCH_CORE}"
+    implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${UnitTesting.MOCKITO_KOTLIN}"
+    implementation "com.squareup.retrofit2:retrofit-mock:${UnitTesting.MOCK_RETROFIT}"
 }
