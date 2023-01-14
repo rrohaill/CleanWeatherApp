@@ -78,20 +78,12 @@ fun NowWeatherPortrait(
     currentWeather: WeatherUIData,
 ) {
     Row(modifier = modifier) {
-        Image(
-            painter = rememberImagePainter(
-                BuildConfig.IMAGE_URL.replace(
-                    "{icon}",
-                    currentWeather.icon
-                )
-            ),
-            contentDescription = "weather_image",
+
+        WeatherIcon(
             modifier = Modifier
                 .fillMaxHeight()
-                .padding(top = 50.dp)
                 .weight(1f),
-            alignment = Alignment.CenterEnd,
-            contentScale = ContentScale.Fit,
+            iconUrl = currentWeather.icon
         )
 
         Column(
@@ -102,54 +94,7 @@ fun NowWeatherPortrait(
             horizontalAlignment = Alignment.End,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = stringResource(
-                    id = R.string.home_text_celsius_high_low,
-                    currentWeather.max,
-                    currentWeather.min,
-                ),
-            )
-
-            Text(
-                text = currentWeather.city,
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                style = MaterialTheme.typography.labelMedium.copy(fontSize = 22.sp),
-            )
-
-            Degrees(
-                currentWeather = currentWeather.description,
-                currentTemp = currentWeather.temperature,
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_sunrise,
-                title = stringResource(id = R.string.sun_rise),
-                description = currentWeather.sunRise,
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_sunset,
-                title = stringResource(id = R.string.sun_set),
-                description = currentWeather.sunSet,
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_wind,
-                title = stringResource(id = R.string.wind),
-                description = stringResource(
-                    id = R.string.home_text_meter_per_second,
-                    currentWeather.windSpeed
-                ),
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_humidity,
-                title = stringResource(id = R.string.humidity),
-                description = stringResource(
-                    id = R.string.home_text_humidity,
-                    currentWeather.humidity
-                ),
-            )
+            ListWeather(currentWeather = currentWeather)
         }
     }
 }
@@ -168,72 +113,84 @@ fun NowWeatherLandscape(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top
         ) {
-            Text(
-                text = stringResource(
-                    id = R.string.home_text_celsius_high_low,
-                    currentWeather.max,
-                    currentWeather.min,
-                ),
-            )
-
-            Text(
-                text = currentWeather.city,
-                modifier = Modifier.align(Alignment.CenterVertically),
-                style = MaterialTheme.typography.labelMedium.copy(fontSize = 22.sp),
-            )
-
-            Degrees(
-                currentWeather = currentWeather.description,
-                currentTemp = currentWeather.temperature,
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_sunrise,
-                title = stringResource(id = R.string.sun_rise),
-                description = currentWeather.sunRise,
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_sunset,
-                title = stringResource(id = R.string.sun_set),
-                description = currentWeather.sunSet,
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_wind,
-                title = stringResource(id = R.string.wind),
-                description = stringResource(
-                    id = R.string.home_text_meter_per_second,
-                    currentWeather.windSpeed
-                ),
-            )
-
-            DetailWeather(
-                iconId = R.drawable.ic_humidity,
-                title = stringResource(id = R.string.humidity),
-                description = stringResource(
-                    id = R.string.home_text_humidity,
-                    currentWeather.humidity
-                ),
-            )
+            ListWeather(currentWeather = currentWeather)
         }
 
-        Image(
-            painter = rememberImagePainter(
-                BuildConfig.IMAGE_URL.replace(
-                    "{icon}",
-                    currentWeather.icon
-                )
-            ),
-            contentDescription = "weather_image",
+        WeatherIcon(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 50.dp)
                 .weight(1f),
-            alignment = Alignment.Center,
-            contentScale = ContentScale.Fit,
+            iconUrl = currentWeather.icon
         )
     }
+}
+
+@Composable
+fun WeatherIcon(modifier: Modifier, iconUrl: String) {
+    Image(
+        painter = rememberImagePainter(
+            BuildConfig.IMAGE_URL.replace(
+                "{icon}",
+                iconUrl
+            )
+        ),
+        contentDescription = "weather_image",
+        modifier = modifier
+            .padding(top = 50.dp),
+        alignment = Alignment.Center,
+        contentScale = ContentScale.Fit,
+    )
+}
+
+@Composable
+fun ListWeather(currentWeather: WeatherUIData) {
+    Text(
+        text = stringResource(
+            id = R.string.home_text_celsius_high_low,
+            currentWeather.max,
+            currentWeather.min,
+        ),
+    )
+
+    Text(
+        text = currentWeather.city,
+        style = MaterialTheme.typography.labelMedium.copy(fontSize = 22.sp),
+    )
+
+    Degrees(
+        currentWeather = currentWeather.description,
+        currentTemp = currentWeather.temperature,
+    )
+
+    DetailWeather(
+        iconId = R.drawable.ic_sunrise,
+        title = stringResource(id = R.string.sun_rise),
+        description = currentWeather.sunRise,
+    )
+
+    DetailWeather(
+        iconId = R.drawable.ic_sunset,
+        title = stringResource(id = R.string.sun_set),
+        description = currentWeather.sunSet,
+    )
+
+    DetailWeather(
+        iconId = R.drawable.ic_wind,
+        title = stringResource(id = R.string.wind),
+        description = stringResource(
+            id = R.string.home_text_meter_per_second,
+            currentWeather.windSpeed
+        ),
+    )
+
+    DetailWeather(
+        iconId = R.drawable.ic_humidity,
+        title = stringResource(id = R.string.humidity),
+        description = stringResource(
+            id = R.string.home_text_humidity,
+            currentWeather.humidity
+        ),
+    )
 }
 
 @Composable
