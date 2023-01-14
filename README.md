@@ -20,6 +20,8 @@
 ## :blue_book: Feature
 
 - Show the current weather by location latitude and longitude.
+- Portrait and Landscape mode
+- Dark and Light theme
 
 ## API
 
