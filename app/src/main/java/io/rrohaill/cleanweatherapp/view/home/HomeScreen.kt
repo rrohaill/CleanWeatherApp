@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
@@ -30,6 +31,7 @@ import io.rrohaill.cleanweatherapp.common.compose.ShowLoading
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIData
 import io.rrohaill.cleanweatherapp.domain.usecase.model.WeatherUIResult
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 @Composable
 fun HomeScreen(weatherResult: Flow<WeatherUIResult>) {
@@ -252,4 +254,32 @@ fun Degrees(
             style = MaterialTheme.typography.labelMedium.copy(fontSize = 22.sp),
         )
     }
+}
+
+@Preview(name = "HomeScreen")
+@Composable
+fun ShowPreview() {
+    HomeScreen(weatherResult = flow {
+        emit(
+            WeatherUIResult.Success(
+                WeatherUIData(
+                    "",
+                    "",
+                    "-1",
+                    "-5",
+                    -6.0,
+                    2.0,
+                    2,
+                    4,
+                    9,
+                    "",
+                    "8:28",
+                    "16:02",
+                    "Sweden",
+                    "Mölndal",
+                    7.0
+                )
+            )
+        )
+    })
 }
